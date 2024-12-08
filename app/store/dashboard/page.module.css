@@ -1,0 +1,173 @@
+.container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.storeInfo h1 {
+  margin: 0;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.storeInfo p {
+  margin: 0.5rem 0 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+.logoutButton {
+  padding: 0.5rem 1rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.qrSection {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.qrSection h2 {
+  margin: 0 0 1.5rem;
+  color: #333;
+}
+
+.qrCode {
+  max-width: 300px;
+  margin: 0 auto 1.5rem;
+}
+
+.qrCode img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.qrSection p {
+  color: #666;
+  margin: 0;
+}
+
+.ordersSection {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.ordersSection h2 {
+  margin: 0 0 1.5rem;
+  color: #333;
+}
+
+.noOrders {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.ordersTable {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ordersTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ordersTable th {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.ordersTable td {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.orderRow {
+  transition: background-color 0.2s;
+}
+
+.orderRow:hover {
+  background-color: #f8f9fa;
+}
+
+.filesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filesList li {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.timer {
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.timerExpiring {
+  color: #dc3545;
+}
+
+.printButton {
+  padding: 0.5rem 1rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.printButton:hover {
+  background-color: #1976d2;
+}
+
+.printButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2rem;
+  color: #666;
+} 

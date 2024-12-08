@@ -1,0 +1,17 @@
+I have created new next app.
+Im upto creating project, the project where it solve an problem of printing/xerox stores from keeping the files of the customer in 
+thier computer 
+
+there two parts in it one is the Store side and another is stores customer side 
+
+for the store side the store owner registeres in this platform by which after Registeration 
+an QR code is generated for that store.
+
+for the Customer side when the customer scans the QR code an Upload menu where an user uploads an images 
+which should be printed this uploaded image will be shown in the Store owners page and the store owner can print it without downloading 
+it directly from there. 
+
+we need to implement some privacy features like saving in computer should be allowed from the store owner side. 
+
+so that comfidential files should not be with the store.
+

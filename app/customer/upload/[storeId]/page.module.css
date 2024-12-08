@@ -1,0 +1,219 @@
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.storeInfo {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.storeInfo h2 {
+  margin-bottom: 0.5rem;
+}
+
+.uploadForm {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.customerInfo {
+  margin-bottom: 2rem;
+}
+
+.customerInfo label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #0070f3;
+}
+
+.dropzone {
+  border: 2px dashed #ddd;
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.dropzone:hover {
+  border-color: #0070f3;
+}
+
+.dropzone input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.dropzone label {
+  color: #666;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.fileList {
+  margin: 2rem 0;
+}
+
+.fileItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f5f5f5;
+  border-radius: 4px;
+  margin: 0.5rem 0;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: #ff4444;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.removeButton:hover {
+  color: #cc0000;
+}
+
+.uploadButton {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.uploadButton:hover {
+  background-color: #0051b3;
+}
+
+.uploadButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.uploadedFiles {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.uploadedFilesTable {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.uploadedFilesTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.uploadedFilesTable th,
+.uploadedFilesTable td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.uploadedFilesTable th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+.uploadedFileItem:hover {
+  background: #f9f9f9;
+}
+
+.timer {
+  color: #666;
+  font-weight: 500;
+}
+
+.timerExpiring {
+  color: #ff4444;
+  animation: pulse 1s infinite;
+}
+
+.note {
+  color: #666;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.error {
+  color: #ff4444;
+  background-color: #ffebeb;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.backButton {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #0051b3;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+} 

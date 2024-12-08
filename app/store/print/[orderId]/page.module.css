@@ -1,0 +1,246 @@
+.container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.backButton {
+  padding: 0.5rem 1rem;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #5a6268;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  min-height: calc(100vh - 200px);
+}
+
+.previewArea {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: sticky;
+  top: 2rem;
+}
+
+.previewImage {
+  max-width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.previewPdf {
+  width: 100%;
+  height: 600px;
+  border: none;
+}
+
+.previewText {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 4px;
+}
+
+.previewText pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #212529;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.fileInfo {
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.fileInfo h2 {
+  margin: 0 0 0.5rem;
+  color: #333;
+  font-size: 1.2rem;
+  word-break: break-word;
+}
+
+.fileInfo p {
+  margin: 0;
+  color: #666;
+}
+
+.printSettings {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.settingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.settingGroup:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.settingGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.settingGroup label.full {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.settingGroup select,
+.settingGroup input[type="number"] {
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  width: 100%;
+  background-color: white;
+}
+
+.settingGroup select:hover,
+.settingGroup input[type="number"]:hover {
+  border-color: #adb5bd;
+}
+
+.settingGroup select:focus,
+.settingGroup input[type="number"]:focus {
+  border-color: #2196f3;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.25);
+}
+
+.settingGroup input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #dee2e6;
+  margin-top: auto;
+}
+
+.navButton,
+.printButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navButton {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.navButton:hover:not(:disabled) {
+  background-color: #dee2e6;
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.printButton {
+  background-color: #2196f3;
+  color: white;
+  font-weight: 500;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.printButton:hover {
+  background-color: #1976d2;
+}
+
+.error {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2rem;
+  color: #666;
+} 
