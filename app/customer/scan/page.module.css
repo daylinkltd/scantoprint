@@ -1,11 +1,11 @@
 .container {
-  max-width: 800px;
+  max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
   text-align: center;
 }
 
-.scanArea {
+.formContainer {
   margin: 2rem auto;
   padding: 2rem;
   background: white;
@@ -13,87 +13,74 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.scanButton,
-.cancelButton,
-.submitButton {
-  background-color: #0070f3;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 4px;
+.description {
+  color: #666;
+  margin-bottom: 2rem;
   font-size: 1.1rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  transition: background-color 0.2s;
 }
 
-.cancelButton {
-  background-color: #ff4444;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.scanButton:hover,
-.submitButton:hover {
-  background-color: #0051b3;
-}
-
-.cancelButton:hover {
-  background-color: #cc0000;
-}
-
-.scanner {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  position: relative;
-}
-
-#reader {
-  width: 100%;
-  margin: 0 auto;
-}
-
-#reader video {
-  border-radius: 8px;
-}
-
-#reader button {
-  background-color: #0070f3 !important;
-  color: white !important;
-  border: none !important;
-  padding: 0.5rem 1rem !important;
-  border-radius: 4px !important;
-  font-size: 1rem !important;
-  cursor: pointer !important;
-  margin: 0.5rem !important;
-}
-
-.manualEntry {
-  margin-top: 3rem;
-  padding: 2rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.manualForm {
+.inputGroup {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   max-width: 400px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .input {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #0070f3;
+}
+
+.submitButton {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #0051b3;
+}
+
+.submitButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.hint {
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0;
 }
 
 .error {
   color: #ff4444;
   margin: 1rem 0;
-  padding: 0.5rem;
+  padding: 1rem;
   background: #ffebeb;
-  border-radius: 4px;
+  border-radius: 8px;
+  font-weight: 500;
 } 

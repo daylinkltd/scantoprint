@@ -2,12 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { QrReader } from 'react-qr-reader';
 import styles from './page.module.css';
 
-export default function ScanQR() {
+export default function EnterStoreID() {
   const router = useRouter();
-  const [scanning, setScanning] = useState(false);
   const [manualStoreId, setManualStoreId] = useState('');
   const [error, setError] = useState('');
   const [validating, setValidating] = useState(false);
@@ -33,20 +31,7 @@ export default function ScanQR() {
     }
   };
 
-  const handleScan = (result) => {
-    if (result) {
-      try {
-        const data = JSON.parse(result.text);
-        if (data.storeId) {
-          validateAndRedirect(data.storeId);
-        }
-      } catch (error) {
-        setError('Invalid QR code');
-      }
-    }
-  };
-
-  const handleManualSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (manualStoreId.trim()) {
       await validateAndRedirect(manualStoreId.trim());
@@ -55,60 +40,35 @@ export default function ScanQR() {
 
   return (
     <div className={styles.container}>
-      <h1>Scan Store QR Code</h1>
+      <h1>Enter Store ID</h1>
       {error && <div className={styles.error}>{error}</div>}
       
-      <div className={styles.scanArea}>
-        {!scanning ? (
-          <>
-            <p>Click the button below to scan the store's QR code</p>
-            <button 
-              onClick={() => setScanning(true)}
-              className={styles.scanButton}
-            >
-              Start Scanning
-            </button>
-          </>
-        ) : (
-          <div className={styles.scanner}>
-            <QrReader
-              constraints={{ 
-                facingMode: 'environment',
-                width: '100%',
-                height: '100%'
-              }}
-              onResult={handleScan}
-              className={styles.qrReader}
-              videoStyle={{ width: '100%', height: '100%' }}
-              videoContainerStyle={{ width: '100%', height: '300px' }}
+      <div className={styles.formContainer}>
+        <p className={styles.description}>
+          Enter the store ID provided by the print store to upload your documents.
+        </p>
+        
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <input
+              type="text"
+              value={manualStoreId}
+              onChange={(e) => setManualStoreId(e.target.value)}
+              placeholder="Enter Store ID"
+              className={styles.input}
+              autoFocus
             />
             <button 
-              onClick={() => setScanning(false)}
-              className={styles.cancelButton}
+              type="submit" 
+              className={styles.submitButton}
+              disabled={validating}
             >
-              Cancel Scanning
+              {validating ? 'Validating...' : 'Continue'}
             </button>
           </div>
-        )}
-      </div>
-
-      <div className={styles.manualEntry}>
-        <h2>Or Enter Store ID Manually</h2>
-        <form onSubmit={handleManualSubmit} className={styles.manualForm}>
-          <input
-            type="text"
-            value={manualStoreId}
-            onChange={(e) => setManualStoreId(e.target.value)}
-            placeholder="Enter Store ID"
-            className={styles.input}
-          />
-          <button 
-            type="submit" 
-            className={styles.submitButton}
-            disabled={validating}
-          >
-            {validating ? 'Validating...' : 'Continue'}
-          </button>
+          <p className={styles.hint}>
+            The store ID can be found displayed at the store counter or on your receipt.
+          </p>
         </form>
       </div>
     </div>
