@@ -38,9 +38,8 @@ export async function GET(req, context) {
     // Read all files
     const fileContents = await Promise.all(
       order.files.map(async (file) => {
-        const filePath = join(process.cwd(), config.upload.directory, order.storeId, file.fileName);
         try {
-          const content = await readFile(filePath);
+          const content = await getFile(file.fileName);
           return {
             name: file.originalName,
             type: file.fileType,
