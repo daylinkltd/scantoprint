@@ -1,44 +1,63 @@
 import './globals.css';
+import styles from './layout.module.css';
+import Link from 'next/link';
 
 export const metadata = {
-  title: 'ScanToPrint - Digital Print Management System',
-  description: 'Streamline your printing experience with digital file management. Upload documents via QR code and manage print orders efficiently.',
-  keywords: 'print management, digital printing, QR code printing, document management, print store',
-  authors: [{ name: 'ScanToPrint' }],
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#0070f3',
-  manifest: '/manifest.json',
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://scantoprint.vercel.app',
-    title: 'ScanToPrint - Digital Print Management System',
-    description: 'Streamline your printing experience with digital file management. Upload documents via QR code and manage print orders efficiently.',
-    siteName: 'ScanToPrint',
-    images: [{
-      url: '/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'ScanToPrint Preview',
-    }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ScanToPrint - Digital Print Management System',
-    description: 'Streamline your printing experience with digital file management',
-    images: ['/twitter-image.png'],
-  },
+  title: 'ScanToPrint - Print Documents Easily',
+  description: 'Upload, scan, and print your documents with just a few clicks',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <nav className={styles.navbar}>
+          <div className={styles.navContainer}>
+            <Link href="/" className={styles.logo}>
+              ScanToPrint
+            </Link>
+            <div className={styles.navLinks}>
+              <Link href="/features">Features</Link>
+              <Link href="/about">About</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="/store/login" className={styles.loginButton}>
+                Store Login
+              </Link>
+            </div>
+          </div>
+        </nav>
+
         {children}
+
+        <footer className={styles.footer}>
+          <div className={styles.footerContent}>
+            <div className={styles.footerSection}>
+              <h3>ScanToPrint</h3>
+              <p>Making printing easier for everyone</p>
+            </div>
+            <div className={styles.footerSection}>
+              <h3>Quick Links</h3>
+              <Link href="/features">Features</Link>
+              <Link href="/about">About Us</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="/#how-it-works">How It Works</Link>
+            </div>
+            <div className={styles.footerSection}>
+              <h3>For Businesses</h3>
+              <Link href="/store/register">Register Store</Link>
+              <Link href="/store/login">Store Login</Link>
+            </div>
+            <div className={styles.footerSection}>
+              <h3>Contact Us</h3>
+              <p>sohailnadaf66@gmail.com</p>
+              <p>+91 8050594245</p>
+              <p>JCER, Belagavi</p>
+            </div>
+          </div>
+          <div className={styles.footerBottom}>
+            <p>&copy; {new Date().getFullYear()} ScanToPrint. All rights reserved.</p>
+          </div>
+        </footer>
       </body>
     </html>
   );
