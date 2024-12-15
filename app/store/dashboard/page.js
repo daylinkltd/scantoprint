@@ -151,8 +151,211 @@ export default function StoreDashboard() {
     router.push('/store/login');
   };
 
-  const handlePrint = (orderId) => {
-    router.push(`/store/print/${orderId}`);
+  const handlePrint = async (orderId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`/api/store/orders/print/${orderId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch print files');
+      }
+
+      const data = await response.json();
+      const { order } = data;
+
+      // Create a new window for printing
+      const printWindow = window.open('', '_blank');
+      if (!printWindow) {
+        throw new Error('Please allow popups to print documents');
+      }
+
+      // Write the content to the new window
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Print Order - ${order.customerName || 'Anonymous'}</title>
+            <style>
+              @page {
+                size: A4;
+                margin: 0;
+              }
+              body { 
+                margin: 0;
+                padding: 0;
+                background: white;
+              }
+              .file-container {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                page-break-after: always;
+                position: relative;
+              }
+              .file-container:last-child {
+                page-break-after: avoid;
+              }
+              .pdf-frame {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                display: block;
+              }
+              .image-container {
+                width: 210mm;  /* A4 width */
+                height: 297mm; /* A4 height */
+                position: relative;
+                margin: 0 auto;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: white;
+              }
+              .print-image {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+                margin: auto;
+              }
+              @media print {
+                body { 
+                  margin: 0;
+                  padding: 0;
+                  background: white;
+                  -webkit-print-color-adjust: exact;
+                  print-color-adjust: exact;
+                }
+                .file-container {
+                  width: 100%;
+                  height: 100%;
+                  page-break-after: always;
+                }
+                .file-container:last-child {
+                  page-break-after: avoid;
+                }
+                .pdf-frame {
+                  width: 100%;
+                  height: 100%;
+                }
+                .image-container {
+                  break-inside: avoid;
+                  page-break-inside: avoid;
+                }
+                .print-image {
+                  max-width: 100%;
+                  max-height: 297mm; /* A4 height */
+                }
+              }
+            </style>
+            <script>
+              function handleFrameLoad(frame) {
+                if (frame.getAttribute('data-type').startsWith('application/pdf')) {
+                  // For PDFs, maintain original format
+                  frame.style.height = '100vh';
+                }
+              }
+
+              function handleImageLoad(img) {
+                const container = img.parentElement;
+                const aspectRatio = img.naturalWidth / img.naturalHeight;
+                const containerAspect = container.clientWidth / container.clientHeight;
+
+                if (aspectRatio > containerAspect) {
+                  // Image is wider than container
+                  img.style.width = '100%';
+                  img.style.height = 'auto';
+                } else {
+                  // Image is taller than container
+                  img.style.height = '100%';
+                  img.style.width = 'auto';
+                }
+              }
+            </script>
+          </head>
+          <body>
+      `);
+
+      // Add each file to the print window
+      order.files.forEach((file) => {
+        const fileData = `data:${file.type};base64,${file.content}`;
+        
+        if (file.type.startsWith('application/pdf')) {
+          // Handle PDFs
+          printWindow.document.write(`
+            <div class="file-container">
+              <iframe 
+                class="pdf-frame"
+                src="${fileData}#toolbar=0&view=FitH"
+                type="${file.type}"
+                data-type="${file.type}"
+                onload="handleFrameLoad(this)"
+              ></iframe>
+            </div>
+          `);
+        } else if (file.type.startsWith('image/')) {
+          // Handle Images
+          printWindow.document.write(`
+            <div class="file-container">
+              <div class="image-container">
+                <img 
+                  class="print-image"
+                  src="${fileData}"
+                  alt="${file.originalName}"
+                  onload="handleImageLoad(this)"
+                />
+              </div>
+            </div>
+          `);
+        } else {
+          // Handle other file types (convert to PDF-like view)
+          printWindow.document.write(`
+            <div class="file-container">
+              <iframe 
+                class="pdf-frame"
+                src="${fileData}"
+                type="${file.type}"
+                data-type="${file.type}"
+                onload="handleFrameLoad(this)"
+              ></iframe>
+            </div>
+          `);
+        }
+      });
+
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+
+      // Wait for content to load
+      setTimeout(() => {
+        try {
+          printWindow.focus();
+          printWindow.print();
+          
+          // Close window after printing
+          const checkPrintDialog = setInterval(() => {
+            if (printWindow.document.hasFocus()) {
+              clearInterval(checkPrintDialog);
+              setTimeout(() => {
+                printWindow.close();
+              }, 1000);
+            }
+          }, 500);
+        } catch (error) {
+          console.error('Print window error:', error);
+          printWindow.close();
+        }
+      }, 2000);
+
+    } catch (error) {
+      console.error('Print error:', error);
+      setError(error.message);
+    }
   };
 
   const formatTime = (seconds) => {

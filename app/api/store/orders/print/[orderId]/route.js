@@ -2,16 +2,15 @@ import { NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import PrintOrder from '@/models/PrintOrder';
 import { authenticateToken } from '@/lib/auth';
-import { readFile } from 'fs/promises';
-import { join } from 'path';
-import config from '@/lib/config';
+import { getFile } from '@/lib/fileHandler';
 
-export async function GET(req, context) {
+export async function GET(request) {
   try {
-    const orderId = context.params.orderId;
+    // Get orderId from URL
+    const orderId = request.url.split('/').pop();
 
     // Authenticate request
-    const decoded = await authenticateToken(req);
+    const decoded = await authenticateToken(request);
     if (!decoded) {
       return NextResponse.json(
         { error: 'Unauthorized' },

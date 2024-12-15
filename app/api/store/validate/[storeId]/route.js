@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import Store from '@/models/Store';
 
-export async function GET(req, context) {
+export async function GET(request) {
   try {
-    const storeId = await context.params.storeId;
+    // Get storeId from URL
+    const storeId = request.url.split('/').pop();
     console.log('Validating store ID:', storeId);
     
     // Connect to database

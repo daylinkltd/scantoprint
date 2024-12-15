@@ -16,13 +16,14 @@ async function cleanupExpiredOrders() {
   });
 }
 
-export async function GET(req, context) {
+export async function GET(request) {
   try {
-    const storeId = await context.params.storeId;
+    // Get storeId from URL
+    const storeId = request.url.split('/').pop();
     console.log('Fetching orders for store ID:', storeId);
 
     // Authenticate request
-    const decoded = await authenticateToken(req);
+    const decoded = await authenticateToken(request);
     if (!decoded) {
       console.log('Unauthorized request');
       return NextResponse.json(
@@ -90,14 +91,15 @@ export async function GET(req, context) {
   }
 }
 
-export async function PUT(req, context) {
+export async function PUT(request) {
   try {
-    const storeId = await context.params.storeId;
-    const { orderId, action } = await req.json();
+    // Get storeId from URL
+    const storeId = request.url.split('/').pop();
+    const { orderId, action } = await request.json();
     console.log('Updating order:', { storeId, orderId, action });
 
     // Authenticate request
-    const decoded = await authenticateToken(req);
+    const decoded = await authenticateToken(request);
     if (!decoded) {
       console.log('Unauthorized request');
       return NextResponse.json(
